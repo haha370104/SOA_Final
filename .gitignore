@@ -6,3 +6,5 @@
 *.xml
 
 *.iml
+
+db_config.py

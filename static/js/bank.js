@@ -289,7 +289,7 @@ function getBankDetialInfo(id) {
  //   console.log("stepy : " + stepy);
     //console.log("targetw : " + bank_height*1.5);
     //console.log("targeth : " + bank_width*1.5); //#abc_bank
-    var image = "url(\"image/" + id.split("#")[1].split("_")[0] + "_building_after.png\")";
+    var image = "url(\"/static/image/" + id.split("#")[1].split("_")[0] + "_building_after.png\")";
   //  console.log("image is " + image);
     $(id).css({
         "background-image": image,
@@ -462,7 +462,7 @@ function initPosition(id, isnext) {
     var topI = $(currentinfo).css("top").split("px")[0] * 1.0;
     var leftI = $(currentinfo).css("left").split("px")[0] * 1.0;
     var info = id.split("_")[0] + "_info";
-    var image = "url(\"image/" + id.split("#")[1].split("_")[0] + "_building_after.png\")";
+    var image = "url(\"/static/image/" + id.split("#")[1].split("_")[0] + "_building_after.png\")";
     if (isnext) {//如果是下一个的话，则初始位置定在左边
         $(id).css({
             "top":topP,
