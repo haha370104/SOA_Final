@@ -2,7 +2,7 @@ import requests
 import json
 from model.bank_product import bank_product, db
 
-def update_ccb():
+def update():
 
     brands = ['01', '02', '03', '04']
     product = []
@@ -20,7 +20,7 @@ def update_ccb():
             else:
                 page += 1
                 product += result['ProdList']
-
+    count=0
     for pr_json in product:
         ID = pr_json['code']
         name = pr_json['name']
@@ -41,5 +41,7 @@ def update_ccb():
             p = bank_product(ID, name, rate, duration, duration_flag, type_flag, product_url, start_amount, '中国建设银行',
                              currencies)
             db.session.add(p)
+            count+=1
     db.session.commit()
+    return {'update_count': count}
 

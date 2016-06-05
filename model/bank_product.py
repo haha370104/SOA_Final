@@ -1,5 +1,4 @@
 from app_config import db
-import json
 
 
 class bank_product(db.Model):
@@ -54,3 +53,5 @@ class bank_product(db.Model):
         dic['product_name'] = self.product_name
         dic['rate'] = str(float(self.interest_rate)) + '%'
         return dic
+
+

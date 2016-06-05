@@ -1,7 +1,7 @@
 ﻿var currentbankName;
 var page;
 var num = 0;
-var baseurl = "http://115.28.206.58:8080";
+var baseurl = "http://0.0.0.0:8080";
 var banktoid = {"icbc": 1, "abc": 2, "ccb": 3, "bocom": 4};
 var mdata;
 var wholepages;//记录页面的总数
@@ -10,7 +10,7 @@ var currentpage;//当前页
 function GetList(ajaxid) {
     $.ajax({
         type: "GET",
-        url: baseurl + "/bank/get_count/" + ajaxid + "/",
+        url: baseurl + "/bank/check_bank/" + ajaxid + "/",
         dataType: "json",
         async: true,
         success: function (num) {

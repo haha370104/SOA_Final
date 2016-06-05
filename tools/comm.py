@@ -4,10 +4,11 @@ from model.bank_product import bank_product, db
 import re
 
 
-def update_comm():
+def update():
     req = requests.get('http://www.bankcomm.com/BankCommSite/zonghang/cn/lcpd/queryFundInfoList.do')
     content = pq(req.text)
     products = content('dl')
+    count=0
     for product in products:
         product = pq(product)
         ID = product.attr('id').rstrip()
@@ -33,8 +34,9 @@ def update_comm():
             type_flag = False
         url = 'http://www.bankcomm.com/BankCommSite/zonghang/cn/lcpd/queryFundInfo.do?code={0}'.format(ID)
         if bank_product.query.get(ID) == None:
+            count+=1
             p = bank_product(ID, name, rate, duration, duration_flag, type_flag, url, start_amount, '交通银行', currencies)
             db.session.add(p)
     db.session.commit()
-
+    return {'update_count': count}
 

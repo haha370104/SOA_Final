@@ -2,7 +2,8 @@ import requests
 import json
 from model.bank_product import bank_product, db
 
-def update_abc():
+
+def update():
     product = []
     i = 1
     total = 0
@@ -21,6 +22,7 @@ def update_abc():
             total -= length
         else:
             break
+    count = 0
     for pr_json in product:
         ID = pr_json['ProductNo']
         name = pr_json['ProdName']
@@ -47,5 +49,6 @@ def update_abc():
             p = bank_product(ID, name, rate, duration, duration_flag, type_flag, product_url, start_amount, bank_name,
                              currencies)
             db.session.add(p)
+            count += 1
     db.session.commit()
-
+    return {'update_count': count}
