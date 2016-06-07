@@ -1,0 +1,77 @@
+{
+  "product_ID": {
+    "value": "prodID",
+    "complex": false
+  },
+  "bank_name": {
+    "value": {
+      "key": [],
+      "function": "lambda args: '中国工商银行'"
+    },
+    "complex": true
+  },
+  "product_name": {
+    "value": "productName",
+    "complex": false
+  },
+  "type_flag": {
+    "value": {
+      "key": [],
+      "function": "lambda args: None"
+    },
+    "complex": true
+  },
+  "duration": {
+    "value": {
+      "key": [
+        "productTerm"
+      ],
+      "function": "lambda temp: 0 if temp[0]=='无固定期限' else int(__import__('re').findall('[0-9]+', temp[0])[0])"
+    },
+    "complex": true
+  },
+  "product_url": {
+    "value": {
+      "key": [
+        "prodID"
+      ],
+      "function": "lambda prodID: 'http://www.icbc.com.cn/icbc/%E7%BD%91%E4%B8%8A%E7%90%86%E8%B4%A2/%E7%90%86%E8%B4%A2%E4%BA%A7%E5%93%81/%E4%BA%A7%E5%93%81%E9%A2%84%E8%A7%88.htm?productId='+prodID[0]"
+    },
+    "complex": true
+  },
+  "duration_flag": {
+    "value": {
+      "key": [],
+      "function": "lambda args: False"
+    },
+    "complex": true
+  },
+  "currencies": {
+    "value": {
+      "key": [
+        "categoryL2",
+        "productName"
+      ],
+      "function": "lambda args: '人民币' if args[0] !=6 else '欧元' if args[1].find('欧元')!=-1 else '美元' if args[1].find('美元')!=-1 else '其他'"
+    },
+    "complex": true
+  },
+  "interest_rate": {
+    "value": {
+      "key": [
+        "intendYield"
+      ],
+      "function": "lambda rate: float(__import__('re').findall('[0-9\\.]+', rate[0])[0].rstrip('%'))"
+    },
+    "complex": true
+  },
+  "start_amount": {
+    "value": {
+      "key": [
+        "buyPaamt"
+      ],
+      "function": "lambda amount: int(float(amount[0]))"
+    },
+    "complex": true
+  }
+}
