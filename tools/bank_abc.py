@@ -13,7 +13,7 @@ def update():
             params={'i': i, 's': 15, 'o': 0, 'w': '%E5%8F%AF%E5%94%AE%7C%7C%7C%7C%7C%7C%7C1%7C%7C0%7C%7C0'})
         result = json.loads(req.text)
         if total == 0:
-            total = result['Data']['Table1'][0]['total']
+            total = int(result['Data']['Table1'][0]['total'])
         length = len(result['Data']['Table'])
         i += 1
         product += result['Data']['Table']

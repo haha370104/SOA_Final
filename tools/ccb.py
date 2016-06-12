@@ -2,8 +2,8 @@ import requests
 import json
 from model.bank_product import bank_product, db
 
-def update():
 
+def update():
     brands = ['01', '02', '03', '04']
     product = []
 
@@ -20,12 +20,13 @@ def update():
             else:
                 page += 1
                 product += result['ProdList']
-    count=0
+    count = 0
     for pr_json in product:
         ID = pr_json['code']
         name = pr_json['name']
         rate = float(pr_json['yieldRate'])
-        currency_dic = {'01': '人民币'}
+        currency_dic = {'01': '人民币', '12': '英镑', '13': '港币', '14': '美元', '15': '瑞士法郎', '29': '澳元', '33': '欧元',
+                        '27': '日元', '28': '加元'}
         currencies = currency_dic[pr_json['currencyType']]
         risk = int(pr_json['riskLevel'])
         if risk > 1:
@@ -41,7 +42,6 @@ def update():
             p = bank_product(ID, name, rate, duration, duration_flag, type_flag, product_url, start_amount, '中国建设银行',
                              currencies)
             db.session.add(p)
-            count+=1
+            count += 1
     db.session.commit()
     return {'update_count': count}
-
