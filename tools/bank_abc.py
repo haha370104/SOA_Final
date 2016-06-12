@@ -30,7 +30,10 @@ def update():
             rate = float(pr_json['ProdProfit'].split('-')[0].rstrip('%'))
         except:
             continue
-        currencies = '人民币'
+        if '美元' in name:
+            currencies='美元'
+        else:
+            currencies = '人民币'
         duration = pr_json['ProdLimit'].rstrip('天')
         if duration.find('最低') != -1:
             duration = duration.lstrip('最低持有')

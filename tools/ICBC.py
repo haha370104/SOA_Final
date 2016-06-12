@@ -38,6 +38,3 @@ def update():
     db.session.commit()
 
     return {'update_count': count}
-
-
-print(update())

@@ -54,4 +54,13 @@ class bank_product(db.Model):
         dic['rate'] = str(float(self.interest_rate)) + '%'
         return dic
 
-
+    def to_buss_json(self):
+        dic = {}
+        dic['ID'] = self.product_ID
+        dic['product_name'] = self.product_name
+        dic['rate'] = float(self.interest_rate)
+        dic['duration'] = self.duration
+        dic['duration_flag'] = self.duration_flag
+        dic['bank_name']=self.bank_name
+        dic['url']=self.product_url
+        return dic
